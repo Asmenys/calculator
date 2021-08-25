@@ -1,0 +1,63 @@
+html {
+  height: 100vh;
+  width: auto;
+}
+body {
+  height: 100%;
+  width: auto;
+}
+#mainContainer {
+  width: 40%;
+  height: 40%;
+  display: grid;
+  grid-template-columns: 0.5fr 0.25fr 0.25fr;
+  grid-template-rows: repeat(4, 1fr);
+
+  grid-template-areas:
+    "gridCalcDisplay gridCalcDisplay gridCalcDisplay"
+    "gridNumContainer gridPlus gridMinus "
+    "gridNumContainer gridDivide gridMultiply"
+    "gridNumContainer gridClear gridEqual";
+}
+#numContainer {
+  grid-area: gridNumContainer;
+  /*   width: 30%;
+  height: 30%; */
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(4, 1fr);
+  grid-template-areas:
+    "numButton9 numButton8 numButton7"
+    "numButton6 numButton5 numButton4"
+    "numButton3 numButton2 numButton1"
+    "numButton0 numButton0 numButton0";
+}
+.numButtons {
+  background-color: aquamarine;
+}
+.operatorButtons {
+  background-color: orange;
+}
+
+#clearButton {
+  grid-area: gridClear;
+  background-color: forestgreen;
+}
+#plus {
+  grid-area: gridPlus;
+}
+#minus {
+  grid-area: gridMinus;
+}
+#multiply {
+  grid-area: gridMultiply;
+}
+#divide {
+  grid-area: gridDivide;
+}
+#equal {
+  grid-area: gridEqual;
+}
+calcDisplay {
+  grid-area: gridCalcDisplay;
+}
