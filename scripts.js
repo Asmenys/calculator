@@ -15,12 +15,12 @@ function operate(a, b, operator) {
 }
 
 operators = [
-  { operator: "+", operatorName: "plus" },
-  { operator: "-", operatorName: "minus" },
-  { operator: ":", operatorName: "divide" },
-  { operator: "*", operatorName: "multiply" },
-  { operator: "=", operatorName: "equal" },
-  { operator: "clear", operatorName: "clearButton" },
+  { operator: "+", operatorID: "add" },
+  { operator: "-", operatorID: "substract" },
+  { operator: ":", operatorID: "divide" },
+  { operator: "*", operatorID: "multiply" },
+  { operator: "=", operatorID: "operate" },
+  { operator: "clear", operatorID: "clearButton" },
 ];
 
 const body = document.querySelector("body");
@@ -38,6 +38,9 @@ for (let i = 9; i >= 0; i--) {
   button.textContent = `${i}`;
   button.setAttribute("class", "numButtons");
   button.style.gridArea = `numButton${i}`;
+  button.addEventListener("click", function () {
+    document.getElementById("calcDisplay").textContent += `${i}`;
+  });
   numContainer.appendChild(button);
 }
 
@@ -45,12 +48,15 @@ operators.forEach((operator) => {
   const operatorButton = document.createElement("button");
   operatorButton.textContent = `${operator.operator}`;
   operatorButton.setAttribute("class", "operatorButtons");
-  operatorButton.setAttribute("id", `${operator.operatorName}`);
+  operatorButton.setAttribute("id", `${operator.operatorID}`);
+  operatorButton.addEventListener("click", function (e) {
+console.log(e.target.id)
+  });
   container.appendChild(operatorButton);
 });
 
 const calcDisplay = document.createElement("div");
-/* calcDisplay.style.display="grid";
-calcDisplay.style.gridArea=calcDisplay; */
-calcDisplay.textContent = "4+2";
+calcDisplay.setAttribute("id", "calcDisplay");
+
+calcDisplay.textContent = "";
 container.appendChild(calcDisplay);

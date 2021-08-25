@@ -43,10 +43,10 @@ body {
   grid-area: gridClear;
   background-color: forestgreen;
 }
-#plus {
+#add {
   grid-area: gridPlus;
 }
-#minus {
+#substract {
   grid-area: gridMinus;
 }
 #multiply {
@@ -55,7 +55,7 @@ body {
 #divide {
   grid-area: gridDivide;
 }
-#equal {
+#operate {
   grid-area: gridEqual;
 }
 calcDisplay {
