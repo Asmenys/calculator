@@ -55,7 +55,7 @@ body {
 #divide {
   grid-area: gridDivide;
 }
-#operate {
+#equalButton {
   grid-area: gridEqual;
 }
 calcDisplay {
