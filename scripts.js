@@ -1,23 +1,31 @@
-let valueX=""
-let valueA=valueX;
+let valueX = "";
+let valueA;
 let valueB;
 let action;
 
+functions = {
+  add: function (a, b) {
+    valueX = a + b;
+    valueA = a + b;
+  },
+  substract: function (a, b) {
+    valueA = a - b;
+    valueX = valueA;
+  },
+  multiply: function (a, b) {
+    valueA = a * b;
+    valueX = valueA;
+  },
+  divide: function (a, b) {
+    valueA = a / b;
+    valueX = valueA;
+  },
+};
 
-function add(a, b) {
-  return a + b;
-}
-function substract(a, b) {
-  return a - b;
-}
-function multiply(a, b) {
-  return a * b;
-}
-function divide(a, b) {
-  return a / b;
-}
-function operate(a, b, operator) {
-  operator(a, b);
+function operate(a, b, operatorCall) {
+  functions[operatorCall](a, b);
+  action = "";
+  document.getElementById("calcDisplay").textContent = `${valueA.toFixed(2)}`;
 }
 
 operators = [
@@ -26,22 +34,32 @@ operators = [
   { operator: ":", operatorID: "divide" },
   { operator: "*", operatorID: "multiply" },
 ];
-const clearButton=document.createElement("button");
-clearButton.setAttribute("id","clearButton")
-clearButton.addEventListener("click", function () {
-  valueA="";
-  valueB="";
-  document.getElementById("calcDisplay").textContent = "";
-});
-
-const equalButton=document.createElement("equalButton");
-equalButton.setAttribute("id","equal");
-
-
 
 const body = document.querySelector("body");
 const container = document.createElement("div");
 container.setAttribute("id", "mainContainer");
+
+const clearButton = document.createElement("button");
+clearButton.setAttribute("id", "clearButton");
+clearButton.textContent = "clear";
+clearButton.addEventListener("click", function () {
+  valueA = "";
+  valueB = "";
+  document.getElementById("calcDisplay").textContent = "";
+});
+container.appendChild(clearButton);
+
+const equalButton = document.createElement("button");
+equalButton.setAttribute("id", "equalButton");
+equalButton.textContent = "=";
+equalButton.addEventListener("click", function (e) {
+  valueB = parseInt(valueX);
+  valueX = "";
+  document.getElementById("calcDisplay").textContent = "";
+  operate(valueA, valueB, action);
+});
+
+container.appendChild(equalButton);
 
 const numContainer = document.createElement("div");
 numContainer.setAttribute("id", "numContainer");
@@ -56,7 +74,7 @@ for (let i = 9; i >= 0; i--) {
   button.style.gridArea = `numButton${i}`;
   button.addEventListener("click", function () {
     document.getElementById("calcDisplay").textContent += `${i}`;
-    valueX+=`${i}`
+    valueX += `${i}`;
   });
   numContainer.appendChild(button);
 }
@@ -67,7 +85,10 @@ operators.forEach((operator) => {
   operatorButton.setAttribute("class", "operatorButtons");
   operatorButton.setAttribute("id", `${operator.operatorID}`);
   operatorButton.addEventListener("click", function (e) {
-  valueB=valueX;
+    document.getElementById("calcDisplay").textContent = "";
+    valueA = parseInt(valueX);
+    valueX = "";
+    action = e.target.id;
   });
   container.appendChild(operatorButton);
 });
@@ -77,4 +98,3 @@ calcDisplay.setAttribute("id", "calcDisplay");
 
 calcDisplay.textContent = "";
 container.appendChild(calcDisplay);
-
