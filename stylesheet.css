@@ -3,6 +3,8 @@ html {
   width: auto;
 }
 body {
+  display: grid;
+  place-items: center;
   height: 100%;
   width: auto;
 }
@@ -14,10 +16,10 @@ body {
   grid-template-rows: repeat(4, 1fr);
 
   grid-template-areas:
-    "gridCalcDisplay gridCalcDisplay gridCalcDisplay"
+    "gridCalcDisplay gridClear gridEqual"
     "gridNumContainer gridPlus gridMinus "
     "gridNumContainer gridDivide gridMultiply"
-    "gridNumContainer gridClear gridEqual";
+    "gridNumContainer gridDecimalButton .";
 }
 #numContainer {
   grid-area: gridNumContainer;
@@ -60,4 +62,13 @@ body {
 }
 calcDisplay {
   grid-area: gridCalcDisplay;
+border-style: solid;
+  border-radius: 10px;
+  border-color: black;
+}
+#decimalButton{
+  grid-area: gridDecimalButton;
+}
+#backspaceButton{
+  grid-area: gridBackspaceButton;
 }

@@ -45,6 +45,8 @@ clearButton.textContent = "clear";
 clearButton.addEventListener("click", function () {
   valueA = "";
   valueB = "";
+  valueX="";
+  action="";
   document.getElementById("calcDisplay").textContent = "";
 });
 container.appendChild(clearButton);
